@@ -1,0 +1,15 @@
+version: '3'
+services:
+  react-app:
+    hostname: react-app
+    container_name: calc-workout-web
+    build:
+      context: .
+    image: node:8
+    expose:
+      - 5000
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
