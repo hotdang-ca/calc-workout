@@ -1,13 +1,16 @@
-version: '3'
+version: '2'
 services:
   react-app:
     hostname: react-app
     container_name: calc-workout-web
+    environment:
+      NODE_ENV: production
+      VIRTUAL_HOST: calc.hotdang.ca
     build:
       context: .
     image: node:8
     expose:
-      - 5000
+      - 80
 
 networks:
   default:

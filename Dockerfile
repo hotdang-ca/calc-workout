@@ -9,7 +9,7 @@ ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install -g serve
 
 # Set the command to start the node server.
-CMD serve -s build
+CMD serve -s build -p 80
 
 # Copy all local files into the image.
 COPY package.json package.json
@@ -20,4 +20,4 @@ COPY . .
 RUN npm run build
 
 # Tell Docker about the port we'll run on.
-EXPOSE 5000
+EXPOSE 80
