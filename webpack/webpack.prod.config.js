@@ -1,6 +1,8 @@
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
 var parentDir = path.join(__dirname, '../');
 
 module.exports = {
@@ -20,7 +22,7 @@ module.exports = {
     ]
   },
   output: {
-    path: parentDir + '/dist',
+    path: parentDir + '/build',
     filename: 'bundle.js'
   },
   plugins: [
@@ -28,9 +30,9 @@ module.exports = {
       title: 'My App',
       template: parentDir + '/src/client/index.html',
     }),
-  ],
-  devServer: {
-    contentBase: parentDir + '/dist',
-    historyApiFallback: true
-  }
+    new UglifyJSPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    })
+  ]
 }

@@ -41,8 +41,13 @@ export default class App extends Component {
       hr,
     });
 
-    this.ftpInput.value = ftp;
-    this.hrInput.value = hr;
+    if (ftp) {
+      this.ftpInput.value = ftp;
+    }
+
+    if (hr) {
+      this.hrInput.value = hr;
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
